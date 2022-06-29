@@ -1,0 +1,17 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+#xs{
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	color: black;
+	border:double #000000;
+	background: #d7ebff;
+	width: 100px;
+	}
+#btn{
+	margin-top: 20px;
+	margin-left: 20px;
+}
