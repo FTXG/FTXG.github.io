@@ -4,10 +4,10 @@ $(function () {
 		if (sj) {
 			clearTimeout(sj);
 			sj=null;
-			$("#btn").val("打开");
+			$("#btn").text("ACTION");
 		} else{
 			sjkz();
-			$("#btn").val("暂停");
+			$("#btn").text("STOP");
 		}
 	})
 })
