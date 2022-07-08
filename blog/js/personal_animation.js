@@ -60,7 +60,7 @@ $(function () {
                 ,id: 'layerDemo' //防止重复弹出
                 ,content: $(".conInfo")
                 ,btn: '关闭全部'
-                ,area:['640px','360px']
+                ,area:['800px','450px']
                 ,btnAlign: 'c' //按钮居中
                 ,moveType: 1 //拖拽
                 ,shade: 0.3
