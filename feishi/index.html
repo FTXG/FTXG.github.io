@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>飞狮集团🦁</title>
+    <link rel="shortcut icon" type="image/x-icon" href="img/lsp/IMG_002.ico" media="screen" />
+    <link rel="stylesheet" href="css/element_plus.css" />
+    <script type="text/javascript" src="js/vue_V3.2.36.js"/>
+    <script type="text/javascript" src="js/element_plus.js"/>
+    <script>Vue.config.productionTip=false</script>
+</head>
+<body>
+<div id="counter">
+    Counter: {{ counter }}
+    <p>{{ message }}</p>
+    <button v-on:click="reverseMessage(seen)">反转 Message</button>
+    <span v-if="seen">现在你看到我了</span>
+</div>
+</body>
+<script>
+    let i = 0;
+    const Counter = {
+        data() {
+            return {
+                counter: 0,
+                message: 'Hello Vue.js!',
+                seen: true
+            }
+        },
+        mounted() {
+            setInterval(() => {
+                this.counter++
+            }, 1000);
+        },
+        methods: {
+            reverseMessage(seen) {
+                // if(i%2==0){
+                //     this.seen = false;
+                // }else {
+                //     this.seen = true;
+                // }
+                // i=i+1;
+                this.seen = !seen;
+                console.log("## i ##"+i)
+                this.message = this.message
+                    .split('')
+                    .reverse()
+                    .join('')
+            }
+        }
+    }
+    Vue.createApp(Counter).mount('#counter')
+</script>
+</html>
