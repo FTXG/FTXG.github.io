@@ -51,7 +51,7 @@ $(function () {
         $(".sexing").on('click',function () {
             $(".conInfo").empty();
             // $(".conInfo").load("https://www.yikm.net")
-            var floatFrame = "<iframe class='iframeXBW' src='https://dvb9m57a.com' loading='lazy' target=\"_parent\"></iframe>"
+            var floatFrame = "<iframe class='iframeXBW' src='https://5206eiha.com/pc/index.html#/address?url1=https%3A%2F%2F5206eiha.com&url2=https%3A%2F%2F5206eiha.com' loading='lazy' target=\"_parent\"></iframe>"
             $(".conInfo").append(floatFrame);
             layer.open({
                 type: 1
