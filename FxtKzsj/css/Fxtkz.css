@@ -2,17 +2,17 @@
 	margin: 0;
 	padding: 0;
 }
-#xs{
+#xs,#jr{
 	height: 50px;
 	line-height: 50px;
 	text-align: center;
 	color: black;
 	border:double #000000;
 	background: #d7ebff;
-	width: 100px;
+	width: 150px;
 	}
 #sjxs{
-	margin-top: 10%;
+	margin-top: 2%;
 }
 #btn{
 	margin-top: 20px;

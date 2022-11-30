@@ -12,9 +12,12 @@ $(function () {
 	})
 })
 var sj=null;
-var timeStr = "2020-12-2 17:57:47";
+var timeStr = "2020-12-02 17:57:47";
 var beginDate = StrToDate(timeStr);
 var beginTime = beginDate.getTime();
+var jrDateStr = "2023-01-22 00:00:00";
+var jrDate = StrToDate(jrDateStr);
+var jrTimes = jrDate.getTime();
 function sjkz (){
 	var now=new Date();
 	var endTime = now.getTime();
@@ -28,6 +31,9 @@ function sjkz (){
 	var days = toDay.day+"天"+toDay.hour+"时"+toDay.min+"分"+toDay.sec+"秒";
 	$("#context").html(days);
 	$("#xs").html(s+':'+f+':'+m);
+	let jrDatejg = millisecondToDay(endTime,jrTimes);
+	var jrDays = jrDatejg.day+"天"+jrDatejg.hour+"时"+jrDatejg.min+"分"+jrDatejg.sec+"秒";
+	$("#jr").html(jrDays);
 	sj=setTimeout('sjkz()',500);
 }
 //字符串转日期
