@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>随缘查</title>
+    <link rel="stylesheet" href="css/area.css" media="all">
+    <link rel="shortcut icon" type="image/x-icon" href="img/area.ico" media="screen" />
+    <script src="../lib/jquery_3.5.0.js"></script>
+    <script type="text/javascript">
+        $(function (){
+            $("#sendSelect").on("click",function () {
+                let qqCode = $("#qqCode").val();
+                if (qqCode==null||qqCode.length==0||
+                    isNaN(Number(qqCode))||qqCode.length>10){
+                    $(".qq").text("");
+                    $(".phone").text("");
+                    $(".phonediqu").text("");
+                    $(".message").text("输入QQ格式有误，请检查后输入！！");
+                    return;
+                }
+                $.ajax({
+                    type:"get",
+                    url:"https://zy.xywlapi.cc/qqapi",
+                    data:"qq="+qqCode,
+                    dataType:"json",
+                    async:true,//请求是否异步，默认为异步，这也是ajax重要特性
+                    beforeSend:function(){
+                        //请求前的处理
+                        $(".message").text("死命加载中，请稍后。。。")
+                    },
+                    success:function(res){
+                        if (res.status==500){
+                            $(".message").text("未查询到该账号信息")
+                            return;
+                        }
+                        //请求成功时处理
+                        $(".qq").text(res.qq);
+                        $(".phone").text(res.phone);
+                        $(".phonediqu").text(res.phonediqu);
+                        $(".message").text("");
+                    },
+                    complete:function(){
+                        //请求完成的处理
+                    },
+                    error:function(){
+                        //请求出错处理
+                    }
+                });
+            })
+        })
+    </script>
+</head>
+<body>
+<div id="box">
+    <input type="text" id="qqCode" placeholder="请输入QQ号"><br>
+    <input type="button" id="sendSelect" value="查询"><br>
+    <div id="result">
+        <span class="qq"></span><br>
+        <span class="phone"></span><br>
+        <span class="phonediqu"></span>
+        <span class="message"></span>
+    </div>
+</div>
+</body>
+</html>
