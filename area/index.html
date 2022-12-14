@@ -8,10 +8,18 @@
     <script src="../lib/jquery_3.5.0.js"></script>
     <script type="text/javascript">
         $(function (){
+            $(".tip").hide();
+            $(".tipm").hide();
+            $("#qqCode").on("click",function (){
+                $(".tip").hide();
+                $(".tipm").hide();
+            })
             $("#sendSelect").on("click",function () {
                 let qqCode = $("#qqCode").val();
                 if (qqCode==null||qqCode.length==0||
                     isNaN(Number(qqCode))||qqCode.length>10){
+                    $('.tip').hide();
+                    $(".tipm").show();
                     $(".qq").text("");
                     $(".phone").text("");
                     $(".phonediqu").text("");
@@ -25,14 +33,20 @@
                     dataType:"json",
                     async:true,//请求是否异步，默认为异步，这也是ajax重要特性
                     beforeSend:function(){
+                        $('.tip').hide();
+                        $(".tipm").show();
                         //请求前的处理
                         $(".message").text("死命加载中，请稍后。。。")
                     },
                     success:function(res){
                         if (res.status==500){
+                            $('.tip').hide();
+                            $(".tipm").show();
                             $(".message").text("未查询到该账号信息")
                             return;
                         }
+                        $('.tip').show();
+                        $(".tipm").hide();
                         //请求成功时处理
                         $(".qq").text(res.qq);
                         $(".phone").text(res.phone);
@@ -55,10 +69,10 @@
     <input type="text" id="qqCode" placeholder="请输入QQ号"><br>
     <input type="button" id="sendSelect" value="查询"><br>
     <div id="result">
-        <span class="qq"></span><br>
-        <span class="phone"></span><br>
-        <span class="phonediqu"></span>
-        <span class="message"></span>
+        <span class="tip" id="qq">QQ号码：<span class="qq"></span></span><br>
+        <span class="tip" id="phone">电话号码：<span class="phone"></span></span><br>
+        <span class="tip" id="phonediqu">归属地：<span class="phonediqu"></span></span><br>
+        <span class="tipm" id="message">信  息：<span class="message"></span></span>
     </div>
 </div>
 </body>
