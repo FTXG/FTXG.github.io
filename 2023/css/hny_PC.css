@@ -1,0 +1,56 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+html,body{
+    width:100%;
+    height:100%;
+}
+#box{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    background: rgba(185, 156, 156, 0.7);
+}
+#top,#middle,#bottom{
+    height: 30%;
+    width: 100%;
+}
+#top{
+    background: #2D93CA;
+    display: flex;
+    position: absolute;
+    /* 和body这个盒子的底部距离为0px */
+    top: 0%;
+}
+#middle{
+    background: #348dbd;
+    display: flex;
+    position: absolute;
+    /* 和body这个盒子的底部距离为0px */
+    top: 30%;
+}
+#bottom{
+    background: #3f81a4;
+    display: flex;
+    position: absolute;
+    /* 和body这个盒子的底部距离为0px */
+    top: 60%;
+}
+#bottom_bar{
+    height: 10%;
+    width: 100%;
+    background: #5e9ec0;
+    display: flex;
+    position: absolute;
+    bottom: 0%;
+}
+.hny{
+    height: 100%;
+    width: 25%;
+    /*writing-mode: vertical-lr;*/
+    /*text-align:center;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

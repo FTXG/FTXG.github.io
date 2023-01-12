@@ -15,21 +15,24 @@ function getLunar(){
 	var lmonth, lday, lleap; //农历参数
 
 	function Draw() {
-	    NewTick();
+
+	    NewTick(null);
 	    //显示时间
 	    var s = nyear + '年' + nmonth + '月' + nday + '日 ' + '星期' + cweekday(nwday) + ' ' + shapetime(nhrs, nmin, nsec);
 	    s += " 农历" + lmonth + "月" + lday; //农历
+		var vsolar_calendar_day = nyear + '-' + nmonth + '-' + nday;
 	    var lunar_month_day=lmonth + "月" + lday;
 	    //需要展示在页面地方
-		console.log(s);
-        console.log(lunar_month_day);
-	    // $(".xxxx").text(lunar_month_day);
+		$(".nowY").text(vsolar_calendar_day);
+	    $(".nowN").text(lunar_month_day);
 	}
 
 
-	function NewTick() {
-		var nowStr = "2022-12-31";
-		noww = new Date(nowStr);
+	function NewTick(nowStr) {
+		noww = new Date();
+		if (nowStr!=null){
+			noww = new Date(nowStr);
+		}
 	    if (noww.getDate() != nday) {
 	        nyear = noww.getFullYear();
 	        nmonth = noww.getMonth() + 1;
