@@ -11,8 +11,6 @@
     <link rel="apple-touch-icon-precomposed" href="img/favicon.ico">
     <meta name="msapplication-TileColor" content="#000000">
     <meta name="msapplication-TileImage" content="img/favicon.ico">
-    <link rel="stylesheet/less" href="css/rabbit.less">
-    <script type="text/javascript" src="../lib/dist/less.js"></script>
     <style>
         /* cyrillic */
         @font-face {
@@ -254,25 +252,24 @@
         </div>
     </div>
     <div id="middle">
-        <div className="loading">
-            <div className="rabbit"></div>
-            <div className="clouds"></div>
-            <div className="text">LOADING...</div>
-        </div>
+
     </div>
     <div id="bottom"></div>
     <div id="bottom_bar">
         <span class="hny happy">
-            <li class="layui-icon layui-icon-prev"></li>
+            <li class="layui-icon layui-icon-prev prev"></li>
         </span>
         <span class="hny new">
-            <li class="layui-icon layui-icon-pause"></li>
+            <li class="layui-icon layui-icon-pause pause"></li>
         </span>
         <span class="hny year">
-            <li class="layui-icon layui-icon-next"></li>
+            <li class="layui-icon layui-icon-next next"></li>
         </span>
         <span class="hny action ">
-            <li class="layui-icon layui-icon-loading  layui-anim layui-anim-rotate layui-anim-loop"></li>
+            <audio id="audio_gn" autoplay="autoplay" loop="loop" preload="auto">
+                <source src="music/hjgn.mp3" type="audio/MP3">
+            </audio>
+            <li class="layui-icon layui-icon-voice"></li>
         </span>
     </div>
 </div>
@@ -284,6 +281,18 @@
 <script src='js/MyMath.js'>
 </script>
 <script src="js/script.js">
+</script>
+<script>
+    $(".pause").on('click',function () {
+        var audio_gn = $("#audio_gn")[0]
+        if (audio_gn.paused){
+            audio_gn.play();
+            $(".layui-icon-voice").hide();
+        }else {
+            audio_gn.pause();
+            $(".layui-icon-voice").show();
+        }
+    })
 </script>
 </body>
 </html>
