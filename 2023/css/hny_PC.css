@@ -54,3 +54,6 @@ html,body{
     justify-content: center;
     align-items: center;
 }
+#text_zzbf,.layui-icon-voice,.play{
+    display: none;
+}

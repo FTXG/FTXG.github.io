@@ -6,6 +6,7 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="img/area.ico" media="screen" />
     <script src="../lib/jquery_3.5.0.js"></script>
+    <script src="js/pinyin_dict_withtone.js"></script>
     <script>
         const isPc = (function () {
             var userAgentInfo = navigator.userAgent;
@@ -56,8 +57,20 @@
         console.log("你的浏览器标识为"+equipment);
         // console.log("## 参数 ##"+params("_ijt"));
     </script>
+    <script src="js/pinyinUtil.js"></script>
     <script type="text/javascript">
         $(function (){
+            console.log("## 63 ##" +pinyinUtil.getPinyin("您来了！",' ',true,false));
+            $.ajax({
+                type: "get",
+                url: "http://ip-api.com/json/",
+                data: "",
+                dataType: "json",
+                async: true,//请求是否异步，默认为异步，这也是ajax重要特性
+                success:function (res) {
+                    console.log("## 68res ##" + JSON.stringify(res));
+                }
+            })
             $(".tip").hide();
             $(".tipm").hide();
             $("#qqCode").on("click",function (){

@@ -15,7 +15,7 @@ var sj=null;
 var timeStr = "2020-12-02 17:57:47";
 var beginDate = StrToDate(timeStr);
 var beginTime = beginDate.getTime();
-var jrDateStr = "2023-01-22 00:00:00";
+var jrDateStr = "2024-02-10 00:00:00";
 var jrDate = StrToDate(jrDateStr);
 var jrTimes = jrDate.getTime();
 function sjkz (){
