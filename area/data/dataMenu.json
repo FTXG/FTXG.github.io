@@ -1,0 +1,14 @@
+{
+  "QQ": {
+    "qqToPhone": {
+      "title":"QQ查询手机号",
+      "code": "qqToPhone"
+    }
+  },
+  "WB": {
+    "phoneToWB": {
+      "title":"手机号查询微博ID",
+      "code": "phoneToWB"
+    }
+  }
+}
