@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>随缘查</title>
-
-    <link rel="shortcut icon" type="image/x-icon" href="img/area.ico" media="screen" />
+    <link rel="shortcut icon" type="image/x-icon" href="img/area.ico" media="screen"/>
     <script src="../lib/jquery_3.5.0.js"></script>
     <script src="js/pinyin_dict_withtone.js"></script>
+    <script src="js/area.js"></script>
     <script>
         const isPc = (function () {
             var userAgentInfo = navigator.userAgent;
@@ -14,6 +14,7 @@
                 "SymbianOS", "Windows Phone",
                 "iPad", "iPod"
             ];
+            console.log("## 16 ##" + userAgentInfo)
             var flag = true;
             for (var v = 0; v < Agents.length; v++) {
                 if (userAgentInfo.indexOf(Agents[v]) > 0) {
@@ -46,97 +47,22 @@
             if (isPc) {
                 //alert("diannao");
                 document.write('<link rel="stylesheet" href="css/area.css" media="all">');
-            }
-            else {
+            } else {
                 document.write('<link rel="stylesheet" href="css/area_phone.css" media="all">');
                 // alert("shouji");
             }
         }
+
         loadCSS();
-        let equipment = isPc?"电脑":"手机";
-        console.log("你的浏览器标识为"+equipment);
+        let equipment = isPc ? "电脑" : "手机";
+        console.log("你的浏览器标识为" + equipment);
         // console.log("## 参数 ##"+params("_ijt"));
     </script>
     <script src="js/pinyinUtil.js"></script>
-    <script type="text/javascript">
-        $(function (){
-            console.log("## 63 ##" +pinyinUtil.getPinyin("您来了！",' ',true,false));
-            $.ajax({
-                type: "get",
-                url: "http://ip-api.com/json/",
-                data: "",
-                dataType: "json",
-                async: true,//请求是否异步，默认为异步，这也是ajax重要特性
-                success:function (res) {
-                    console.log("## 68res ##" + JSON.stringify(res));
-                }
-            })
-            $(".tip").hide();
-            $(".tipm").hide();
-            $("#qqCode").on("click",function (){
-                $(".tip").hide();
-                $(".tipm").hide();
-            })
-            $("#sendSelect").on("click",function () {
-                let qqCode = $("#qqCode").val();
-                if (qqCode==null||qqCode.length==0||
-                    isNaN(Number(qqCode))||qqCode.length>10){
-                    $('.tip').hide();
-                    $(".tipm").show();
-                    $(".qq").text("");
-                    $(".phone").text("");
-                    $(".phonediqu").text("");
-                    $(".message").text("输入QQ格式有误，请检查后输入！！");
-                    return;
-                }
-                $.ajax({
-                    type:"get",
-                    url:"https://zy.xywlapi.cc/qqapi",
-                    data:"qq="+qqCode,
-                    dataType:"json",
-                    async:true,//请求是否异步，默认为异步，这也是ajax重要特性
-                    beforeSend:function(){
-                        $('.tip').hide();
-                        $(".tipm").show();
-                        //请求前的处理
-                        $(".message").text("死命加载中，请稍后。。。")
-                    },
-                    success:function(res){
-                        if (res.status==500){
-                            $('.tip').hide();
-                            $(".tipm").show();
-                            $(".message").text("未查询到该账号信息")
-                            return;
-                        }
-                        $('.tip').show();
-                        $(".tipm").hide();
-                        //请求成功时处理
-                        $(".qq").text(res.qq);
-                        $(".phone").text(res.phone);
-                        $(".phonediqu").text(res.phonediqu);
-                        $(".message").text("");
-                    },
-                    complete:function(){
-                        //请求完成的处理
-                    },
-                    error:function(){
-                        //请求出错处理
-                    }
-                });
-            })
-        })
-    </script>
 </head>
 <body>
 <div id="box">
-    <input type="text" id="qqCode" placeholder="请输入QQ号"><br>
     <input type="button" id="sendSelect" value="查询"><br>
-    <div id="result">
-        <span class="tip" id="qq">QQ号码：<span class="qq"></span></span><br>
-        <span class="tip" id="phone">电话号码：<span class="phone"></span></span><br>
-        <span class="tip" id="phonediqu">归属地：<span class="phonediqu"></span></span><br>
-        <span class="tipm" id="message">信  息：<span class="message"></span></span>
-    </div>
 </div>
 </body>
 </html>
