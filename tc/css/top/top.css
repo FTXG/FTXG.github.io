@@ -1,0 +1,16 @@
+#top{
+    widows: 3;
+}
+#top>.top-top{
+    height: 20%;
+}
+#top>.top-middle{
+    height: 60%;
+    text-align: center;
+    font-size: 80px;
+    font-weight: bolder;
+    color: #d1edc4;
+}
+#top>.top-bottom{
+    height: 20%;
+}

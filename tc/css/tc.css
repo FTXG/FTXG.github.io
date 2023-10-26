@@ -1,0 +1,29 @@
+/**
+公共样式
+ */
+*{
+    margin: 0px;
+    padding: 0px;
+}
+html,body{
+    width: 100%;
+    height: 100%;
+}
+#box{
+    width: 100%;
+    height: 100%;
+    widows: 3;
+    background: #d9ecff;
+}
+#top{
+    height: 20%;
+    background: #9F9F9F;
+}
+#middle{
+    height: 60%;
+    background: #5f5f5f;
+}
+#bottom{
+    height: 20%;
+    background: #3F3F3F;
+}
