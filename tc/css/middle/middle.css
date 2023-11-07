@@ -4,3 +4,41 @@
     font-weight: bolder;
     color: #d1edc4;
 }
+.middle-img-box{
+    margin: 13% 0 0 47%;
+    font-size: 15px;
+    color: #FFFFFF;
+    -webkit-text-stroke: 1px #000000;
+}
+.middle-img60s{
+    display: block;
+    -webkit-user-select: none;
+    margin: auto;
+    cursor: zoom-in;
+    background-color: hsl(0, 0%, 90%);
+    transition: background-color 300ms;
+    /*width: 397px;*/
+    /*height: 755px;*/
+    width: 5%;
+    height: 10%;
+}
+.big {
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, .6);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    display: none;
+}
+
+.big_img {
+    width: 397px;
+    height: 755px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
