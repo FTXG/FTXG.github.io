@@ -1,6 +1,17 @@
 #bottom{
     text-align: center;
-    font-size: 80px;
+    font-size: 20px;
     font-weight: bolder;
-    color: #d1edc4;
+    color: rgba(209, 237, 196, 0.71);
+}
+#bottom .fresh{
+    border: rgba(255, 255, 255, 0) solid 10px;
+    border-radius: 10px;
+    color: rgba(159, 159, 159, 0);
+}
+#bottom .fresh:hover{
+    color: rgba(159, 159, 159, 0.71);
+    border: rgba(255, 255, 255, 0) solid 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    display: inline;
 }
