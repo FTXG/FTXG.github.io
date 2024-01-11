@@ -12,6 +12,23 @@
             overflow: hidden;
 
         }
+        /* 弹出层样式 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+        }
     </style>
 
 </head>
@@ -19,8 +36,61 @@
 <body>
 
 <canvas id="myCanvas"></canvas>
+<!-- 弹出层 -->
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <p>点击进入疯狂！</p>
+        <button onclick="playAudio()">确定</button>
+    </div>
+</div>
+
 
 <script>
+    // 创建一个 Audio 对象并指定要播放的音频文件
+    const audio = new Audio('https://downsc.chinaz.net/Files/DownLoad/sound1/201708/9018.mp3');
+    let isPlaying = false;
+    // 当鼠标进入页面时，如果音频没有在播放，则开始播放音频
+    // document.addEventListener('DOMContentLoaded', function() {
+    //
+    // });
+    // 点击弹窗上的确认按钮触发音频播放
+    // document.addEventListener('click', function(event) {
+    //     if (!isPlaying) {
+    //         audio.loop = true
+    //         audio.play();
+    //         isPlaying = true;
+    //     }
+    //     audio.loop = true
+    //     audio.play(); // 播放音频
+    // });
+
+    // 打开弹出层
+    function openModal() {
+        document.getElementById('myModal').style.display = 'flex';
+    }
+
+
+    // 播放音频
+    function playAudio() {
+        audio.loop = true
+        audio.play();
+        close();
+    }
+
+    // 关闭弹出层
+    function close() {
+        document.getElementById('myModal').style.display = 'none';
+        setInterval(rain, 90);
+    }
+
+
+    // 当用户鼠标离开页面时，暂停音频
+    // document.addEventListener('mouseleave', function() {
+    //     if (isPlaying) {
+    //         audio.pause();
+    //         isPlaying = false;
+    //     }
+    // });
 
     const width = document.getElementById("myCanvas").width = screen.availWidth;
 
@@ -49,8 +119,8 @@
         });
 
     }
+    openModal()
 
-    setInterval(rain, 90);
 
 </script>
 
