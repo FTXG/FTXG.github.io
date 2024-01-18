@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" media="screen"/>
+    <title>解析o.O?</title>
+    <script type="text/javascript" src="../lib/jquery_3.5.0.js"></script>
+    <script type="text/javascript" src="js/video.js"></script>
+</head>
+<body>
+    <div id="boxTop" class="box">
+        <!--功能区-->
+        <input type="text" id="urlStr" placeholder="请输入视频地址"><input type="button" id="jiexi" value="解析"><br>
+    </div>
+    <div id="boxMiddle" class="box">
+        <div id="result">
+            <span class="message">
+                <span class="status"></span>
+            </span>
+            <!--视频展示位置-->
+            <div class="success">
+
+            </div>
+            <div class="error">
+
+            </div>
+        </div>
+    </div>
+    <div id="boxBottom" class="box">
+
+    </div>
+</body>
+<div id="template" style="display: none">
+    <span class="author"></span><br>
+    <span class="avatar"><img src="JavaScript:;"></span><br>
+    <span class="cover"></span><br>
+    <span class="url"><br>
+        <video class="videoNode" src="JavaScript:;" controls>
+            <h2>我们很抱歉，您的浏览器<strong>不支持video标签</strong></h2>
+        </video>
+    </span>
+    <span class="music"><br>
+        <span class="musicurl">
+            <audio controls>
+                <source src="JavaScript:;" type="audio/ogg">
+                <source src="JavaScript:;" type="audio/mpeg">
+            </audio>
+        </span>
+    </span>
+</div>
+</html>

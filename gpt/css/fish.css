@@ -1,0 +1,13 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #aed6b1;
+}
+
+#fishContainer {
+    position: absolute;
+    pointer-events: none; /* 防止鱼图干扰鼠标事件 */
+}
