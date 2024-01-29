@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>语音转换</title>
+    <link rel="shortcut icon" type="image/x-icon" href="img/area.ico" media="screen"/>
+    <script src="../lib/jquery_3.5.0.js"></script>
+    <script src="../lib/js/JSUtil.js"></script>
+    <link rel="stylesheet" href="../lib/layui/css/layui.css" type="text/css">
+    <script src="js/yy.js"></script>
+    <!--    <link rel="stylesheet" href="css/yy.css" type="text/css">-->
+    <script>
+        const isPc = (function () {
+            var userAgentInfo = navigator.userAgent;
+            var Agents = ["Android", "iPhone",
+                "SymbianOS", "Windows Phone",
+                "iPad", "iPod"
+            ];
+            console.log("## 16 ##" + userAgentInfo)
+            var flag = true;
+            for (var v = 0; v < Agents.length; v++) {
+                if (userAgentInfo.indexOf(Agents[v]) > 0) {
+                    flag = false;
+                    break;
+                }
+            }
+            return flag;
+        }());
+        function loadCSS() {
+            if (isPc) {
+                //alert("diannao");
+                document.write('<link rel="stylesheet" href="css/yy.css" media="all">');
+            } else {
+                document.write('<link rel="stylesheet" href="css/yy_phone.css" media="all">');
+                // alert("shouji");
+            }
+        }
+
+        loadCSS();
+        let equipment = isPc ? "电脑" : "手机";
+        console.log("你的浏览器标识为" + equipment);
+        // console.log("## 参数 ##"+params("_ijt"));
+    </script>
+</head>
+<body>
+<div id="yyBox">
+    <fieldset class="group">
+        <legend class="item1">语音服务</legend>
+        <textarea class="context" type="text" placeholder="在此输入文字"></textarea>
+        <input class="conv" type="button" value="转换"><br>
+        <hr style="background-color: #0C0C0C"/>
+        <div class="info"></div>
+        <div class="stop">暂停</div>
+    </fieldset>
+</div>
+</body>
+</html>
