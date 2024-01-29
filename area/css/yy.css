@@ -48,3 +48,13 @@
     border: #3F3F3F solid 1px;
     margin-left: 3%;
 }
+.spl{
+    display: none;
+}
+.info{
+    position: absolute;
+    top: 25vh;
+    left: 17%;
+    font-size: 1em;
+    color: #FFFFFF;
+}
