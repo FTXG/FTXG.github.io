@@ -67,8 +67,8 @@ const base = {
   plugins: [
     new ProgressBarPlugin(),
     new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: path.resolve(process.cwd(), './index.html')
+      filename: 'fish.html',
+      template: path.resolve(process.cwd(), './fish.html')
     })
   ]
 };

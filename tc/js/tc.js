@@ -8,4 +8,14 @@ $(function () {
             $(".top-middle").text(DateUtil.now());
         }
     },1000)
+    //orz
+    setInterval(function () {
+        if ($(".hs").text() == "orz-7"){
+            $(".hs").text("orƶ7")
+        }else if ($(".hs").text() == "orƶ7"){
+            $(".hs").text("orz-7")
+        }else {
+            $(".hs").text("orz-7")
+        }
+    },100)
 })

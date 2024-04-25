@@ -49,11 +49,11 @@
     // 创建一个 Audio 对象并指定要播放的音频文件
     // const audio = new Audio('../lib/media/music/wzry/dw1.mp3');
     // 创建多个音频对象
-    const audioFiles = [
-        new Audio('../lib/media/music/wzry/dw1.mp3'),
-        new Audio('../lib/media/music/wzry/dw2.mp3'),
-        new Audio('../lib/media/music/wzry/dw3.mp3')
-    ];
+    // const audioFiles = [
+    //     new Audio('../lib/media/music/wzry/dw1.mp3'),
+    //     new Audio('../lib/media/music/wzry/dw2.mp3'),
+    //     new Audio('../lib/media/music/wzry/dw3.mp3')
+    // ];
     let isPlaying = false;
     // 当鼠标进入页面时，如果音频没有在播放，则开始播放音频
     // document.addEventListener('DOMContentLoaded', function() {
@@ -86,11 +86,13 @@
         close();
     }
 
-    // 关闭弹出层
-    function close() {
         document.getElementById('myModal').style.display = 'none';
         setInterval(rain, 90);
-    }
+    // 关闭弹出层
+    // function close() {
+    //     document.getElementById('myModal').style.display = 'none';
+    //     setInterval(rain, 90);
+    // }
 
 
     // 当用户鼠标离开页面时，暂停音频
@@ -128,7 +130,7 @@
         });
 
     }
-    openModal()
+    // openModal()
 
 
 </script>
