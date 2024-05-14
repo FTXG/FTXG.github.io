@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>体测管理系统 - 登录</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('../img/pic.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="button"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="button"]:hover {
+            background-color: #0056b3;
+        }
+        .register-links {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .register-links a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        .radio-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .radio-container label {
+            margin-right: 10px;
+        }
+    </style>
+    <script src="../../lib/jquery_3.5.0.js"></script>
+    <script src="../js/commontool.js"></script>
+    <script>
+        $(function () {
+            // $('input[type="submit"], button[type="submit"]', this).prop('disabled', true);
+            $("#submitbtn").on("click",function () {
+                var selectedValue = $('input[name="role"]:checked').val();
+                window.location.href = "home.html?role="+selectedValue;
+                // g.ajaxGetAsyncJson("../json/student.json","",function (data) {
+                //     console.log("## data ##" + JSON.stringify(data ));
+                // })
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>体侧管理系统登录</h1>
+        <form action="#" method="post">
+            <label for="username">用户名:</label>
+            <input type="text" id="username" name="username" value="200103060201" required>
+            <label for="password">密码:</label>
+            <input type="password" id="password" name="password" value="chenpingan" required>
+            <div class="radio-container">
+                <label>角色:</label>
+                <label for="admin">管理员</label><input type="radio" id="admin" name="role" value="1" required>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <label for="student">学生</label><input type="radio" id="student" name="role" value="2" checked required>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <label for="teacher">教师</label><input type="radio" id="teacher" name="role" value="3" required>
+            </div>
+            <input id="submitbtn" type="button" value="登录">
+        </form>
+        <div class="register-links">
+            <a href="zhu_student.html">注册学生</a> | <a href="zhu_teacher.html">注册教师</a>
+        </div>
+    </div>
+</body>
+
+</html>

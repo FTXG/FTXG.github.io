@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>体测管理系统 - 体测总成绩管理</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .sidebar {
+            width: 200px;
+            float: left;
+            background-color: #f2f2f2;
+            height: 100vh;
+            position: fixed;
+            overflow-y: auto;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar ul li a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .sidebar ul li a.active {
+            background-color: #ddd;
+        }
+
+        .sidebar ul li ul {
+
+            padding-left: 20px;
+        }
+
+        a{
+            text-decoration: none;
+        }
+        .main-content {
+            margin-left: 220px; /* 加上侧边栏的宽度和一定的间距 */
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        .welcome-text {
+            font-size: 40px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .info-section {
+            margin-bottom: 20px;
+        }
+
+        .info-section label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* 清除浮动 */
+        .clearfix::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        .info-section {
+            display: flex;
+            justify-content: space-between; /* 根据需要调整间距 */
+        }
+
+        .input-group {
+            display: flex;
+            align-items: center; /* 垂直居中 */
+        }
+
+        .input-group label {
+            margin-right: 10px; /* 根据需要调整间距 */
+        }
+
+        /* 如果您希望输入框看起来像横线，请注释掉以下部分或替换为您的样式 */
+        .input-group input {
+            /* 您的横线输入框样式，例如使用 border-bottom */
+            border: none;
+            border-bottom: 1px solid #000;
+            background-color: transparent;
+            outline: none; /* 移除浏览器默认的外边框 */
+            padding: 5px 0; /* 根据需要调整内边距 */
+        }
+        .welcome-te table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .welcome-te th, .welcome-te td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        .welcome-te th {
+            background-color: #7e9e9a;
+            color: #fff;
+        }
+        .welcome-te tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        p {
+            text-align: center;
+        }
+    </style>
+    <script src="../../lib/jquery_3.5.0.js"></script>
+    <script src="../js/commontool.js"></script>
+    <script>
+        var urlParams = new URLSearchParams(window.location.search);
+        var roleValue = urlParams.get('role');
+        console.log("## roleValue ##" + roleValue );
+        g.ajaxGetAsyncJson("../json/cj.json","",function (data) {
+            var htmlStr = "";
+            $.each(data,function (index,item) {
+                htmlStr += '<tr>';
+                htmlStr += '<td>' + (index+1) + '</td>';
+                htmlStr += '<td>' + item.stucode + '</td>';
+                htmlStr += '<td>' + item.name + '</td>';
+                htmlStr += '<td>' + item.sex + '</td>';
+                htmlStr += '<td>' + item.spe + '</td>';
+                htmlStr += '<td>' + item.grade + '</td>';
+                htmlStr += '<td>' + item.class + '</td>';
+                htmlStr += '<td>' + item.score + '</td>';
+                htmlStr += '<td>' + item.isPass + '</td>';
+                htmlStr += '<td><input type="button" value="重审">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="上传"></td>';
+            })
+            $("#stuinfo").html(htmlStr);
+        })
+    </script>
+</head>
+<body>
+<div class="container clearfix">
+    <div class="sidebar">
+        <ul>
+            <li><a href="home.html">首页</a></li>
+            <li><a href="stuinfo.html">个人中心</a></li>
+            <li class="has-children">
+                <a href="student.html">学生管理</a>
+                <!--                    <ul>-->
+                <!--                        <li><a href="student.html">学生</a></li>-->
+                <!--                        &lt;!&ndash; 其他学生管理下的栏目 &ndash;&gt;-->
+                <!--                    </ul>-->
+            </li>
+            <li><a href="teacher.html">教师管理</a></li>
+            <li><a href="tcxm.html">体测项目管理</a></li>
+            <li><a href="cj.html" class="active">体测成绩管理</a></li>
+            <li><a href="zcj.html">体测总成绩管理</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <div><a href="home.html">首页</a>&nbsp;&gt;&nbsp;
+            <a href="cj.html">体测成绩管理</a>
+        </div>
+        <br>
+        <div class="info-section">
+            <span><a href="#">录入成绩</a></span>
+        </div>
+        <hr>
+        <div class="welcome-te">
+            <table>
+                <thead>
+                <tr>
+                    <th>索引</th>
+                    <th>学号</th>
+                    <th>姓名</th>
+                    <th>性别</th>
+                    <th>专业</th>
+                    <th>年级</th>
+                    <th>班级</th>
+                    <th>体测总分</th>
+                    <th>是否及格</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody id="stuinfo"></tbody>
+            </table>
+            <!--                <p>暂无数据</p>-->
+        </div>
+        <div class="pagination">
+                <span class="step-links">
+
+                    <a href="">首页</a>
+                    <a href="">上一页</a>
+
+
+                    <span class="current">
+                        第1 页|10条每页
+                    </span>
+
+
+                    <a href="">下一页</a>
+                    <a href="">尾页</a>
+                </span>
+            <!-- 其他内容 -->
+        </div>
+    </div>
+</div>
+</body>
+</html>

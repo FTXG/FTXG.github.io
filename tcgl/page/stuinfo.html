@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>体测管理系统 - 个人中心</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .sidebar {
+            width: 200px;
+            float: left;
+            background-color: #f2f2f2;
+            height: 100vh;
+            position: fixed;
+            overflow-y: auto;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar ul li a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .sidebar ul li a.active {
+            background-color: #ddd;
+        }
+
+        .sidebar ul li ul {
+            display: none;
+            padding-left: 20px;
+        }
+        a{
+            text-decoration: none;
+        }
+
+
+        .main-content {
+            margin-left: 220px; /* 加上侧边栏的宽度和一定的间距 */
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        .welcome-text {
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .info-section {
+            margin-bottom: 20px;
+        }
+
+        .info-section label {
+            display: block;
+            margin-bottom: 5px;
+            padding: 0 10px;
+        }
+        .info input{
+            /* 您的横线输入框样式，例如使用 border-bottom */
+            border: none;
+            border-bottom: 1px solid #000;
+            background-color: transparent;
+            outline: none; /* 移除浏览器默认的外边框 */
+            padding: 5px 0; /* 根据需要调整内边距 */
+        }
+
+        /* 清除浮动 */
+        .clearfix::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        .info-section {
+            display: flex;
+            justify-content: end; /* 根据需要调整间距 */
+        }
+
+        .input-group {
+            display: flex;
+            align-items: center; /* 垂直居中 */
+        }
+
+        .input-group label {
+            margin-right: 10px; /* 根据需要调整间距 */
+        }
+
+        /* 如果您希望输入框看起来像横线，请注释掉以下部分或替换为您的样式 */
+        .input-group input {
+            /* 您的横线输入框样式，例如使用 border-bottom */
+            border: none;
+            border-bottom: 1px solid #000;
+            background-color: transparent;
+            outline: none; /* 移除浏览器默认的外边框 */
+            padding: 5px 0; /* 根据需要调整内边距 */
+        }
+    </style>
+</head>
+<body>
+<div class="container clearfix">
+    <div class="sidebar">
+        <ul>
+            <li><a href="home.html">首页</a></li>
+            <li class="has-children"><a href="stuinfo.html" class="active">个人中心</a>
+
+            </li>
+            <li>
+                <a href="student.html">学生管理</a>
+            </li>
+            <li>
+                <a href="teacher.html">教师管理</a>
+            </li>
+            <li><a href="tcxm.html">体测项目管理</a></li>
+            <li><a href="cj.html">体测成绩管理</a></li>
+            <li><a href="zcj.html">体测总成绩管理</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <div><a href="home.html">首页</a>&nbsp;&gt;&nbsp;
+            <a href="#">个人中心</a>
+        </div>
+        <hr>
+        <div class="info-section">
+            <span style="font-size: 20px"><a href="#">修改</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span style="font-size: 20px"><a href="#">保存</a></span>
+        </div>
+        <div class="welcome-text">
+            <div class="info">
+                <label for="adminname">姓名:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="text" id="adminname" value="吴生涛" disabled placeholder=""><br>
+                <label for="adminphone">手机:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="text" id="adminphone" value="15575567855" disabled placeholder=""><br>
+                <label for="adminsex">性别:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="text" id="adminsex" value="男" disabled placeholder=""><br>
+                <div id="updatepassword"><a href="#">修改密码</a></div>
+            </div>
+        </div>
+        <!-- 其他内容 -->
+    </div>
+</div>
+</body>
+</html>
