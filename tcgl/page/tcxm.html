@@ -129,6 +129,8 @@
             text-align: center;
         }
     </style>
+    <link rel="stylesheet" href="../../lib/layui/css/layui.css" type="text/css"></link>
+    <script src="../../lib/layui/layui.js"></script>
     <script src="../../lib/jquery_3.5.0.js"></script>
     <script src="../js/commontool.js"></script>
     <script>
@@ -144,6 +146,37 @@
                 htmlStr += '<td><input type="button" value="修改">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="删除"></td>';
             })
             $("#xminfo").html(htmlStr);
+        })
+        var layer = layui.layer
+        function zdy() {
+            layer.open({
+                type: 1,
+                area: '350px',
+                resize: false,
+                shadeClose: true,
+                title: '添加项目',
+                content: `
+                  <input type="text" name="xmcode" value="" placeholder="项目编号ty100103060001 ty1001+学院编码+序号" autocomplete="off" class="layui-input" lay-affix="clear">
+                  <input type="text" name="xmname" value="" placeholder="项目名称" autocomplete="off" class="layui-input" lay-affix="clear">
+                  <input type="text" name="xmscore" value="" placeholder="项目总分" autocomplete="off" class="layui-input" lay-affix="clear">
+                  <input type="text" name="xmdescribe" value="" placeholder="项目描述" autocomplete="off" class="layui-input" lay-affix="clear">
+                  `,
+                btn:["添加"],
+                btn1:function (){
+                    layer.closeAll();
+                    tips()
+                }
+            });
+        }
+        function tips() {
+            layer.msg('成功', {icon: 0}, function(){
+                // layer.msg('提示框关闭后的回调');
+            });
+        }
+        $(function () {
+            $(".luru").on("click",function () {
+                zdy()
+            })
         })
     </script>
 </head>
@@ -170,7 +203,7 @@
         <br>
         <hr>
         <div class="info-section">
-            <span class="xm add"><a href="#">添加项目</a></span>
+            <span class="xm add"><a class="luru" href="#">添加项目</a></span>
         </div>
         <div class="welcome-te">
             <table>

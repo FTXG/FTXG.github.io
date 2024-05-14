@@ -123,12 +123,11 @@
             text-align: center;
         }
     </style>
+    <link rel="stylesheet" href="../../lib/layui/css/layui.css" type="text/css"></link>
+    <script src="../../lib/layui/layui.js"></script>
     <script src="../../lib/jquery_3.5.0.js"></script>
     <script src="../js/commontool.js"></script>
     <script>
-        var urlParams = new URLSearchParams(window.location.search);
-        var roleValue = urlParams.get('role');
-        console.log("## roleValue ##" + roleValue );
         g.ajaxGetAsyncJson("../json/cj.json","",function (data) {
             var htmlStr = "";
             $.each(data,function (index,item) {
@@ -145,6 +144,37 @@
                 htmlStr += '<td><input type="button" value="重审">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="上传"></td>';
             })
             $("#stuinfo").html(htmlStr);
+        })
+        var layer = layui.layer
+        function zdy() {
+            layer.open({
+                type: 1,
+                area: '350px',
+                resize: false,
+                shadeClose: true,
+                title: '成绩录入',
+                content: `
+                  <input type="text" name="xmcode" value="" placeholder="学生学号" autocomplete="off" class="layui-input" lay-affix="clear">
+                  <input type="text" name="xmname" value="" placeholder="学生总成绩" autocomplete="off" class="layui-input" lay-affix="clear">
+                  `,
+                btn:['录入'],
+                btn1:function (){
+                    layer.closeAll();
+                    tips();
+                    // return false;
+                }
+            // <button className="layui-btn layui-btn-fluid" lay-filter="">录入</button>
+            });
+        }
+        function tips() {
+            layer.msg('成功', {icon: 0}, function(){
+                // layer.msg('提示框关闭后的回调');
+            });
+        }
+        $(function () {
+            $(".luru").on("click",function () {
+                zdy()
+            })
         })
     </script>
 </head>
@@ -174,7 +204,7 @@
         </div>
         <br>
         <div class="info-section">
-            <span><a href="#">录入成绩</a></span>
+            <span><a class="luru" href="#">录入成绩</a></span>
         </div>
         <hr>
         <div class="welcome-te">
