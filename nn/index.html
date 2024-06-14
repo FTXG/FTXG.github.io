@@ -3,8 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>行万里路🐶</title>
-    <link href="css/common.css" rel="stylesheet" type="text/css">
-    <link href="css/left.css" rel="stylesheet" type="text/css">
+    <script>
+        const isPc = (function () {
+            var userAgentInfo = navigator.userAgent;
+            var Agents = ["Android", "iPhone",
+                "SymbianOS", "Windows Phone",
+                "iPad", "iPod"
+            ];
+            console.log("## 16 ##" + userAgentInfo)
+            var flag = true;
+            for (var v = 0; v < Agents.length; v++) {
+                if (userAgentInfo.indexOf(Agents[v]) > 0) {
+                    flag = false;
+                    break;
+                }
+            }
+            return flag;
+        }());
+        function loadCSS() {
+            if (isPc) {
+                //alert("diannao");
+                document.write('<link href="css/common.css" rel="stylesheet" type="text/css">');
+                document.write('<link href="css/left.css" rel="stylesheet" type="text/css">');
+            } else {
+                document.write('<link href="css/common_pe.css" rel="stylesheet" type="text/css">');
+                document.write('<link href="css/left_pe.css" rel="stylesheet" type="text/css">');
+            }
+        }
+        loadCSS()
+    </script>
     <script src="../lib/jquery_3.5.0.js" type="text/javascript"></script>
     <script src="../lib/js/JSUtil.js" type="text/javascript"></script>
     <script src="js/background.js" type="text/javascript"></script>
@@ -44,14 +71,14 @@
         </div>
     </div>
     <div class="right">
-        <div class="explain" style="font-size:13px;color: #03A9F4; margin: 10px 0; padding-bottom: 0;">
+        <div class="explain" style="color: #03A9F4; margin: 10px 0; padding-bottom: 0;">
             1、从应用商店下载小米运动App (现已更名为: Zepp Life)；<br><br>
             2、打开小米运动App，通过手机号注册登录；<br><br>
             3、登录之后，点击我的-&gt;第三方接入-&gt;<b>绑定需要同步的第三方平台</b>；<br><br>
             4、回到网页版，输入小米运动账号密码，提交步数即可同步至你绑定的所有平台。<br><br>
         </div>
         <hr>
-        <div class="explain" style="font-size:13px;color: red; margi1n: 10px 0; ">
+        <div class="explain" style="color: red; margi1n: 10px 0; ">
             注意：<br>
             1、小米运动非小米手机也可以安装；<br><br>
             2、<b>账号密码建议使用不常用密码，以防信息泄露；</b><br><br>

@@ -25,29 +25,29 @@ button, input {
     background-color: rgb(255, 255, 255);
     left: 15%;
 }
-.left{
+.left {
     position: absolute;
-    left: 0;
-    width: 50%;
-    height: 100%;
+    top: 0;
+    width: 100%;
+    height: 30%;
+    /*text-indent: 2em; !* 设置向内缩进为2em *!*/
+    padding-top: 20%;
 }
 .right{
     position: absolute;
-    left: 50%;
-    width: 47%;
-    height: 100%;
-    /*text-indent: 2em; !* 设置向内缩进为2em *!*/
-    padding-left: 2em;
-    font-size: 13px;
+    top: 50%;
+    width: 100%;
+    height: 50%;
+    font-size: 2em;
 }
 /*竖线*/
 #box::before {
     content: "";
     position: absolute;
-    left: 50%;
-    top: 0;
-    bottom: 0;
-    width: 1px;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 1px;
     background-color: black;
 }
 *, ::after, ::before {
