@@ -4,6 +4,6 @@ $(function () {
     }).on('mouseout','.qin',function (e) {
         $(this).animate().stop(true);
         // $(this).css({'width':'40px'});
-        $(this).animate({width:'40px'},'50')
+        $(this).animate({width:'40px'},'10')
     })
 })

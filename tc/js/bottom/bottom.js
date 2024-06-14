@@ -16,10 +16,20 @@ $(function () {
      */
 })
 function yiyan() {
-    g.ajaxGetAsyncJson("https://v1.hitokoto.cn/","c=d&c=k&c=i&c=b",function (data) {
+    var url = "https://v1.hitokoto.cn/"
+    var param = {
+        //c=d&c=k&c=i&c=b
+        "c":"d",
+        "c":"k",
+        "c":"i",
+        "c":"b"
+    }
+    g.ajaxGetAsyncJson(url,"",param,function (data) {
         console.log("## data ##" + JSON.stringify(data) );
         $(".famous_quotes").text(data.hitokoto);
         $(".selected_from").text(data.from_who == null ? "佚名":data.from_who);
+    },function () {
+        console.log("## 请求失败 ##" + url );
     })
 }
 //自动关闭提示框

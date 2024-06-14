@@ -1,0 +1,57 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+div {
+    display: block;
+    unicode-bidi: isolate;
+}
+input {
+    outline: none;
+    border: none;
+}
+button, input {
+    overflow: visible;
+}
+#canvas {
+    position: absolute;
+    left: 0;
+}
+#box{
+    position: relative;
+    width: 70%;
+    height: 100vh;
+    background-color: rgb(255, 255, 255);
+    left: 15%;
+}
+.left{
+    position: absolute;
+    left: 0;
+    width: 50%;
+    height: 100%;
+}
+.right{
+    position: absolute;
+    left: 50%;
+    width: 47%;
+    height: 100%;
+    /*text-indent: 2em; !* 设置向内缩进为2em *!*/
+    padding-left: 2em;
+}
+/*竖线*/
+#box::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background-color: black;
+}
+*, ::after, ::before {
+    box-sizing: inherit;
+}
+*, ::after, ::before {
+    box-sizing: inherit;
+}
