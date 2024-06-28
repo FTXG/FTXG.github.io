@@ -19,7 +19,7 @@ $(function () {
         }
         $.ajax({
             type:"get",
-            url:"https://zy.xywlapi.cc/qqapi",
+            url: "https://api.xywlapi.cc/qqapi",//https://zy.xywlapi.cc/qqapi",
             data:"qq="+qqCode,
             dataType:"json",
             async:true,//请求是否异步，默认为异步，这也是ajax重要特性
