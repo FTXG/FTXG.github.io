@@ -1,0 +1,97 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+html,body{
+    width: 100%;
+    height: 100%;
+}
+#box{
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    background-color: #dddddd;
+    border: 1px solid #000000;
+    position: relative;
+}
+#tianping,#ball,#result{
+    position: absolute;
+    box-sizing: border-box;
+    width: 50%;
+    height: 50%;
+    background-color: #fbd7d7;
+    border: 1px solid #000000;
+}
+#tianping{
+    right: 0%;
+    top: 0%;
+    width: 50%;
+    height: 100%;
+}
+#ball{
+    left: 0%;
+    top: 0%;
+}
+#result{
+    left: 0%;
+    bottom: 0%;
+}
+.triangle,.lever,.left_tp,.right_tp,.explain_b{
+    position: absolute;
+}
+.explain_b{
+    left: 0%;
+    bottom: 0%;
+    font-size: 2em;
+}
+.triangle{
+    left: 39%;
+    bottom: 0%;
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent; /* 左边框 */
+    border-right: 50px solid transparent; /* 右边框 */
+    border-bottom: 140px solid #9DC45F; /* 底边为蓝色 */
+}
+.lever{
+    left: 11%;
+    bottom: 18%;
+    width: 71%;
+    height: 1%;
+    background-color: #9DC45F;
+}
+.left_tp,.right_tp{
+    width: 30%;
+    height: 20%;
+    bottom: 20%;
+    background-color: #9DC45F;
+    border: 1px solid #000000;
+}
+.left_tp{
+    left: 0%;
+}
+.right_tp{
+    right: 0%;
+}
+.sel{
+    background-color: #ef4e4e;
+}
+.ball{
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background-color: #2D93CA;
+    border-radius: 50%;
+    text-align: center;
+}
+.index_r,.text_r,.action_tp,.statu_tp,.num_describe{
+    width: 30%;
+    height: 10%;
+    font-size: 2em;
+}
+.ok_r{
+    width: 10%;
+    height: 10%;
+    font-size: 2em;
+    background-color: #def1be;
+}

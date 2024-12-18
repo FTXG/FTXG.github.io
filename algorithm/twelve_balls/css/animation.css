@@ -1,0 +1,41 @@
+/* 使用 @keyframes 创建一个简单的旋转动画 */
+@keyframes spinRight {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(20deg); }
+}
+@keyframes spinLeft {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-20deg); }
+}
+/* 定义关键帧 */
+@keyframes moveUp {
+    from {
+        transform: translateY(0); /* 开始时的位置 */
+    }
+    to {
+        transform: translateY(-100px); /* 结束时向上移动100像素 */
+    }
+}
+@keyframes moveDown {
+    from {
+        transform: translateY(0); /* 开始时的位置 */
+    }
+    to {
+        transform: translateY(100px); /* 结束时向下移动100像素 */
+    }
+}
+
+
+
+.spinR {
+    animation: spinRight 0.5s forwards;
+}
+.spinL {
+    animation: spinLeft 0.5s forwards;
+}
+.spinU{
+    animation: moveUp 0.5s forwards;
+}
+.spinD{
+    animation: moveDown 0.5s forwards;
+}
