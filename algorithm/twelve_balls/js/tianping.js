@@ -18,7 +18,7 @@ $(function () {
         e.preventDefault();
     })
 //    点击小球将小球放入天枰
-    $("#ball").on("click","> *",function (e) {
+    $("#ball").on("click","> .ball",function (e) {
         // 'this' 指向触发事件的子元素
         var $this = $(this);
         var targetDiv = $(".sel");
@@ -26,13 +26,13 @@ $(function () {
         e.preventDefault();
     })
     //点击托盘里的小球将其挪到小球栏
-    $(".left_tp").on("click","> *",function (e) {
+    $(".left_tp").on("click","> .ball",function (e) {
         var $this = $(this);
         var targetDiv = $("#ball");
         office_ball($this,targetDiv);
         e.preventDefault();
     })
-    $(".right_tp").on("click","> *",function (e) {
+    $(".right_tp").on("click","> .ball",function (e) {
         var $this = $(this);
         var targetDiv = $("#ball");
         office_ball($this,targetDiv);
@@ -124,7 +124,7 @@ function calc_ball() {
 function init_tianping() {
     var $lever = $(".lever")
     var $left_tp = $(".left_tp")
-    var $right_tp = $(".left_tp")
+    var $right_tp = $(".right_tp")
     $(".statu_tp").html("")
     if ($lever.hasClass("spinR")){
         $lever.removeClass("spinR")
@@ -133,16 +133,16 @@ function init_tianping() {
         $lever.removeClass("spinL")
     }
     if ($left_tp.hasClass("spinU")){
-        $lever.removeClass("spinU")
+        $left_tp.removeClass("spinU")
     }
     if ($left_tp.hasClass("spinD")){
-        $lever.removeClass("spinD")
+        $left_tp.removeClass("spinD")
     }
     if ($right_tp.hasClass("spinU")){
-        $lever.removeClass("spinU")
+        $right_tp.removeClass("spinU")
     }
     if ($right_tp.hasClass("spinD")){
-        $lever.removeClass("spinD")
+        $right_tp.removeClass("spinD")
     }
 }
 //初始化小球值
