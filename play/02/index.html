@@ -754,8 +754,10 @@
 <script>
 
     var pageUrl = "";
-    var nid = "5332";
-    var hostArrs = ["wan55.cn".replace('.cn', '')];
+    // var nid = "5332";
+    // var hostArrs = ["wan55.cn".replace('.cn', '')];
+    var nid = "";
+    var hostArrs = ["play"];
     //'wan55',
     var ctitle = document.getElementById("ctitle") ? document.getElementById("ctitle").innerText : '';
     dataInfo.ctitle = ctitle ? ctitle : dataInfo.ctitle;
@@ -814,7 +816,8 @@
         , szArrs = [0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8, 0x9, 0xa, 0xb, 0xc, 0xd, 0xe, 0xf, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d, 0x1e]
         , ext = ''
         , ext2 = _0x4544e4(0x1a7, '^%mY');
-    host_url = hostArrs[Math['floor'](Math[_0x4544e4(0x1a8, 'o7t!')]() * hostArrs[_0x4544e4(0x1cc, '^%mY')])] + _0x4544e4(0x1ba, 'LFue');
+    host_url = hostArrs[Math['floor'](Math[_0x4544e4(0x1a8, 'o7t!')]() * hostArrs[_0x4544e4(0x1cc, '^%mY')])]// + _0x4544e4(0x1ba, 'LFue');
+    // console.log("## host_url ## ==>" + host_url );
     var btns = document[_0x4544e4(0x1c8, '5SQ[')](_0x4544e4(0x1af, 'cTbL'));
     function _0x460a(_0x19489d, _0x4e5ccc) {
         var _0x29eefc = _0x29ee();
@@ -885,7 +888,7 @@
         nid = nidArrs[Math['floor'](Math['random']() * nidArrs['length'])];
     }
     ext_type == 'zm' ? ext = zmArrs[Math[_0x4544e4(0x1c2, 'C2JF')](Math[_0x4544e4(0x1c4, 'HLpD')]() * zmArrs[_0x4544e4(0x1b5, '(Z9T')])] : ext = szArrs[Math[_0x4544e4(0x1a1, 'E70C')](Math[_0x4544e4(0x1b2, 'qUu8')]() * szArrs['length'])];
-    pageUrl = _0x4544e4(0x1a4, 'MSsx') + host_url + pageUrl + '/' + nid;
+    pageUrl = _0x4544e4(0x1a4, 'MSsx') + host_url + pageUrl + '/02' //+ nid;
     dataInfo[_0x4544e4(0x1c0, 'A@VY')] == 0x0 ? pageUrl = pageUrl + ext : ext2 && (ext = zmArrs[Math['floor'](Math[_0x4544e4(0x1ae, '3W&B')]() * zmArrs[_0x4544e4(0x19e, 'Ouz7')])],
         pageUrl = pageUrl + ext);
     pageUrl = pageUrl['indexOf']('#') > -0x1 ? pageUrl : pageUrl + '#' + timeid;
