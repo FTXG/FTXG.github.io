@@ -19,8 +19,8 @@
                 <div class="content-top">
                     <ul><li>
 
-                        <div><p>				    <b style="color:chocolate;">🎁寒假整蛊合集！ </b><a id="btn-copy" href="javascript:;" onclick="copy_text = $(this).parents('div').eq(0).text().trim().replace(/\s/g, '').replace(/\[预览\]/g, hhf).replace(/\[一键复制全部\]/g, hhf);"> [一键复制全部]</a>
-                        </p>
+                        <div>
+<!--                            <p>				    <b style="color:chocolate;">🎁寒假整蛊合集！ </b><a id="btn-copy" href="javascript:;" onclick="copy_text = $(this).parents('div').eq(0).text().trim().replace(/\s/g, '').replace(/\[预览\]/g, hhf).replace(/\[一键复制全部\]/g, hhf);"> [一键复制全部]</a></p>-->
                             <p><a href="/play/01#7" target="_self">[预览]</a>
                                 <span style="color:#000" ;>成绩查询入口：<a id="btn-copy" href="javascript:;" onclick="copy_text = $(this).parent().text().trim();">play/01#7</a>
 					</span>
@@ -251,7 +251,9 @@
 
             //window.location.href = "https://" + copy_text.split("：")[1];
             lightyear.notify('复制成功~ 请去聊天界面发送后打开', 'success', 1500, 'mdi mdi-emoticon-happy', 'top', 'right');
-            copy_text = copy_text.replace("：","\n");
+            copy_text = copy_text.replace("：","\nhttps://ftxg.github.io/");
+
+            console.log("## copy_text ## ==>" + copy_text );
             //
             return "🎁" + copy_text + "?" + timeid;
         }
