@@ -720,7 +720,7 @@
     if ((typeof (data_type) != "undefined" && data_type == 0) || (typeof (vip_type) != "undefined" && vip_type != null && vip_type == 0)) {
         var ua = navigator.userAgent.toLowerCase();
         if (ua.match(/MicroMessenger/i) == "micromessenger" && ua.indexOf("miniprogram") < 1 && nowref.indexOf("code") < 1 && nowref.indexOf("cate") < 1 && nowref.indexOf("new") < 1 && nowurl.indexOf("mp") < 1) {
-            document.writeln("<script src=\"http://web-file.360ab.cn/static/js/mp-jump.js?v1427\"><\/script>");
+            document.writeln("<script src=\"..\/js\/mp-jump.js?v1427\"><\/script>");
         }
     }
 
@@ -1066,7 +1066,7 @@
     }
     ;var version_ = 'jsjiami.com.v7';
 </script>
-<script src="https://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="../../lib/jquery-2.2.4.min.js"></script>
 <script>
     var ua = navigator.userAgent.toLowerCase();
     if (ua.indexOf("miniprogram") > -1) {
