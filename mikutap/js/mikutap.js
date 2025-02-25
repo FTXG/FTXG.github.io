@@ -23,7 +23,17 @@ var MainManager = function () {
     }
 
     function n(n) {
-        (U = !U) ? ($("#bt_feedback a").text("反馈: ON"), aidn.util.setCookie("fb", "on", 2592e3)) : ($("#bt_feedback a").text("反馈: OFF"), aidn.util.setCookie("fb", "off", 2592e3)), n && n.preventDefault()
+        // if (U = !U){
+        //     $("#bt_feedback a").text("动画效果: ON");
+        //     aidn.util.setCookie("fb", "on", 2592e3);
+        // }else {
+        //     $("#bt_feedback a").text("动画效果: OFF")
+        //     aidn.util.setCookie("fb", "off", 2592e3)
+        //     if (n != undefined){
+        //         n.preventDefault();
+        //     }
+        // }
+        (U = !U) ? ($("#bt_feedback a").text("动画效果: ON"), aidn.util.setCookie("fb", "on", 2592e3)) : ($("#bt_feedback a").text("动画效果: OFF"), aidn.util.setCookie("fb", "off", 2592e3)), n && n.preventDefault()
     }
 
     function o(n) {
@@ -196,6 +206,10 @@ var MainManager = function () {
             }, this.setSize = function (n, a) {
                 i = n, o = a, r.clear(), r.beginFill(16777215), r.alpha = 0, r.drawRect(0, 0, i, o)
             }, this.play = function () {
+                // if (!U){
+                //     TweenLite.fromTo(r, .5, {alpha: .7}, {alpha: 0, ease: Power0.easeNon})
+                //     return;
+                // }
                 U && TweenLite.fromTo(r, .5, {alpha: .7}, {alpha: 0, ease: Power0.easeNon})
             }, this.hitcheck = function (n, a) {
                 return e <= n && n < e + i && t <= a && a < t + o
@@ -1004,7 +1018,7 @@ var MainManager = function () {
         var F = 0
     }, S = !1, D = 0, U = "off" == aidn.util.getCookie("fb"), T = "off" == aidn.util.getCookie("bt");
     n(), o(), aidn.util.webaudio ? ($("#ng").css("display", "none"), $(".ok").css("display", "block"), E && $("#scene_main .attention").html("TOUCH &amp; SWIPE!"), y || $("#scene_top .attention").text("* 提高音量，尽情享受！")) : ($("#ng").css("display", "block"), $(".ok").css("display", "none"), y || $("#ng .atten").html("Sorry,<br>your device or browser doesn't support this site.")),
-        // PIXI.utils._saidHello = !0,
+        PIXI.utils._saidHello = !0,
         aidn.window.resize(a)
 }, WebAudioManager = function () {
     function i() {
