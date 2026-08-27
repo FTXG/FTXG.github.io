@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>售后数据格式化工具</title>
+    <!-- 引用外部 JS 文件 -->
+    <script src="../lib/jquery_3.5.0.js" type="text/javascript"></script>
+    <script src="js/jincheng.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="css/jincheng.css" media="all">
+</head>
+<body>
+<div class="container">
+    <h1>
+        📋 售后数据格式化
+        <span class="count" id="recordCount">共 0 条</span>
+    </h1>
+    <div class="subtitle">粘贴售后数据（支持多条，自动识别字段），下方将生成整洁表格</div>
+
+    <div class="toolbar">
+        <button id="formatBtn">🔁 立即格式化</button>
+        <button id="clearBtn" class="secondary">清空</button>
+        <button id="copyBtn" class="secondary" style="margin-left:auto;">📋 复制表格文本</button>
+        <span class="info">（支持粘贴后自动处理）</span>
+    </div>
+
+    <textarea id="inputArea" placeholder="在此粘贴售后数据，例如：&#10;订单编号：E20260817101614043506211&#10;商品名称：雪中飞 男女同款速干裤+冲锋衣外套&#10;收货人信息：辽宁省 大连市 甘井子区 福佳新城居家东园2期 13号楼10-2号, 董女士, 13898646042&#10;运单号：圆通速递 YT3823080875078&#10;退货已签收&#10;退货单号：JDX057795987951"></textarea>
+
+    <div class="table-wrapper" id="tableWrapper">
+        <table id="resultTable">
+            <thead>
+            <tr>
+                <th>订单号</th>
+                <th>商品名称</th>
+                <th>收货信息</th>
+                <th>商品快递单号</th>
+                <th>状态</th>
+                <th>退货单号</th>
+            </tr>
+            </thead>
+            <tbody id="tableBody">
+            <tr class="empty-row">
+                <td colspan="6">暂无数据，请在上方粘贴内容</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="footer">
+        <span>💡 支持字段：订单编号 / 商品（名称） / 收货信息 / 运单号 / 原单号 / 状态 / 退货单号</span>
+        <div class="action">
+            <button id="exportCsvBtn">导出CSV</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
