@@ -9,7 +9,6 @@ $(function() {
     const copyBtn = document.getElementById('copyBtn');
     const exportCsvBtn = document.getElementById('exportCsvBtn');
 
-    // 用于存储提示元素
     let copyTip = null;
 
     // ---------- 解析核心 ----------
@@ -53,8 +52,9 @@ $(function() {
                     if (m) { returnNo = m[1]; matched = true; }
                 }
 
+                // 状态检测：扩展关键词
                 if (!matched) {
-                    if (/退货已签收|售后成功|买家已退货|商家已同意|售后申请待商家处理|商家已同意售后申请|退款成功/.test(line)) {
+                    if (/退货已签收|售后成功|买家已退货|商家已同意|售后申请待商家处理|商家已同意售后申请|退款成功|仅退款|退款|同意|拒绝|退货/.test(line)) {
                         status = line;
                         matched = true;
                     }
@@ -65,12 +65,16 @@ $(function() {
                 }
             }
 
-            if (!status) {
+            // 如果 status 仍为空，尝试从 unmatched 中取第一条
+            if (!status && unmatched.length > 0) {
                 for (let line of unmatched) {
-                    if (/退货已签收|售后成功|买家已退货|商家已同意|售后申请待商家处理|商家已同意售后申请|退款成功/.test(line)) {
-                        status = line;
-                        break;
-                    }
+                    // 排除包含字段前缀的行（如订单编号、商品等）
+                    if (/订单编号|商品|收货|运单|退货单号/.test(line)) continue;
+                    status = line;
+                    break;
+                }
+                if (!status) {
+                    status = unmatched[0];
                 }
             }
 
@@ -132,7 +136,7 @@ $(function() {
         window._lastData = [];
     });
 
-    // ---------- 复制（无表头，提示紧挨按钮左侧） ----------
+    // ---------- 复制 ----------
     copyBtn.addEventListener('click', function() {
         const data = window._lastData || [];
         if (data.length === 0) return;
@@ -142,7 +146,6 @@ $(function() {
         ]);
         const tsv = rows.map(r => r.join('\t')).join('\n');
 
-        // 复制逻辑
         const copyFn = () => {
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard.writeText(tsv).catch(() => fallbackCopy(tsv));
@@ -162,7 +165,6 @@ $(function() {
 
         copyFn();
 
-        // 显示提示
         if (copyTip) {
             copyTip.textContent = '✅ 已复制';
             copyTip.style.opacity = '1';
@@ -201,14 +203,10 @@ $(function() {
 
     // ---------- 初始化 ----------
     function init() {
-        // 将复制按钮和提示包裹在一个容器中，容器整体靠右
+        // 包裹复制按钮和提示
         const parent = copyBtn.parentNode;
-
-        // 创建容器
         const wrapper = document.createElement('span');
         wrapper.style.cssText = 'display: inline-flex; align-items: center; margin-left: auto;';
-
-        // 创建提示元素
         copyTip = document.createElement('span');
         copyTip.id = 'copyTip';
         copyTip.style.cssText = `
@@ -224,16 +222,11 @@ $(function() {
             transition: opacity 0.3s;
             pointer-events: none;
         `;
-
-        // 将 copyBtn 从父节点移除，然后插入 wrapper
         parent.insertBefore(wrapper, copyBtn);
         wrapper.appendChild(copyTip);
         wrapper.appendChild(copyBtn);
-
-        // 移除 copyBtn 原有的 margin-left:auto（因为 wrapper 已设置）
         copyBtn.style.marginLeft = '0';
 
-        // 如果文本框为空，显示空状态
         if (!inputArea.value.trim()) {
             renderTable([]);
         } else {
