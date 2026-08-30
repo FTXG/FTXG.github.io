@@ -1,3 +1,4 @@
+// formatter.js（增强版：空状态补退货退款 + 换货识别）
 $(function() {
     'use strict';
 
@@ -16,7 +17,7 @@ $(function() {
         if (!text.trim()) return [];
         let blocks = text.split(/\n\s*\n/);
         if (blocks.length <= 1) {
-            blocks = text.split(/(?=^(?:售后|拒收)\s*$)/m).filter(p => p.trim().length > 0);
+            blocks = text.split(/(?=^(?:售后)\s*$)/m).filter(p => p.trim().length > 0);
         }
         const results = [];
         for (let block of blocks) {
@@ -33,7 +34,7 @@ $(function() {
                 if (m) { orderNo = m[1]; matched = true; }
 
                 if (!matched) {
-                    m = line.match(/(?:商品名称|商品)[：:]\s*(.+)/);
+                    m = line.match(/(?:商品名称|商品|产品)[：:]\s*(.+)/);
                     if (m) { product = m[1]; matched = true; }
                 }
 
@@ -52,15 +53,15 @@ $(function() {
                     if (m) { returnNo = m[1]; matched = true; }
                 }
 
-                // 状态检测：扩展关键词
+                // ---------- 状态检测：扩展关键词（新增“换货”） ----------
                 if (!matched) {
-                    if (/退货已签收|售后成功|买家已退货|商家已同意|售后申请待商家处理|商家已同意售后申请|退款成功|仅退款|退款|同意|拒绝|退货/.test(line)) {
+                    if (/退货已签收|买家已退货|商家已同意|售后申请待商家处理|商家已同意售后申请|退款成功|仅退款|退款|同意|拒绝|退货|拦截|拒收|换货/.test(line)) {
                         status = line;
                         matched = true;
                     }
                 }
 
-                if (!matched && !/^(?:售后|拒收)\s*$/.test(line)) {
+                if (!matched && !/^(?:售后)\s*$/.test(line)) {
                     unmatched.push(line);
                 }
             }
@@ -68,14 +69,18 @@ $(function() {
             // 如果 status 仍为空，尝试从 unmatched 中取第一条
             if (!status && unmatched.length > 0) {
                 for (let line of unmatched) {
-                    // 排除包含字段前缀的行（如订单编号、商品等）
-                    if (/订单编号|商品|收货|运单|退货单号/.test(line)) continue;
+                    if (/订单编号|商品|收货|运单|原单|退货单号/.test(line)) continue;
                     status = line;
                     break;
                 }
                 if (!status) {
                     status = unmatched[0];
                 }
+            }
+
+            // ---------- 新增：无状态但有退货单号，自动补“退货退款” ----------
+            if (!status && returnNo) {
+                status = '退货退款';
             }
 
             results.push({ orderNo, product, receiver, tracking, status, returnNo });
@@ -241,4 +246,4 @@ $(function() {
     }
 
     window.formatData = formatData;
-})();
+});
