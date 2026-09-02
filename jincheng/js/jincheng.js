@@ -34,7 +34,7 @@ $(function() {
                 if (m) { orderNo = m[1]; matched = true; }
 
                 if (!matched) {
-                    m = line.match(/(?:商品名称|商品|产品)[：:]\s*(.+)/);
+                    m = line.match(/(?:商品名称|商品|产品名称|产品名|产品)[：:]\s*(.+)/);
                     if (m) { product = m[1]; matched = true; }
                 }
 
