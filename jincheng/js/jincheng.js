@@ -30,7 +30,7 @@ $(function() {
             for (let line of lines) {
                 let matched = false;
 
-                let m = line.match(/订单编号[：:]\s*([A-Za-z0-9]+)/);
+                let m = line.match(/(?:订单编号|订单号)[：:]\s*([A-Za-z0-9]+)/);
                 if (m) { orderNo = m[1]; matched = true; }
 
                 if (!matched) {
@@ -39,7 +39,8 @@ $(function() {
                 }
 
                 if (!matched) {
-                    m = line.match(/收货(?:人|地址|信息)[：:]\s*(.+)/);
+                    // m = line.match(/收货(?:人|地址|信息)[：:]\s*(.+)/);
+                    m = line.match(/(?:收货人信息|收货信息|收货地址|收货人|收件人)[：:]\s*(.+)/);
                     if (m) { receiver = m[1]; matched = true; }
                 }
 
