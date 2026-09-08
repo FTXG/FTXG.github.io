@@ -1,4 +1,4 @@
-// formatter.js（增强版：支持退货/退回单号 + 粘贴滚动到底部）
+// jincheng.js（调整列顺序：商品数量紧随商品名称）
 $(function() {
     'use strict';
 
@@ -24,7 +24,7 @@ $(function() {
             const lines = block.split('\n').map(l => l.trim()).filter(l => l.length > 0);
             if (lines.length === 0) continue;
 
-            let orderNo = '', product = '', receiver = '', tracking = '', status = '', returnNo = '';
+            let orderNo = '', product = '', receiver = '', tracking = '', status = '', returnNo = '', quantity = '';
             const unmatched = [];
 
             for (let line of lines) {
@@ -62,6 +62,21 @@ $(function() {
                     }
                 }
 
+                // ---------- 商品数量检测 ----------
+                if (!matched) {
+                    let qMatch = line.match(/(?:数量|商品数量)[：:]\s*(\d+)\s*件?/);
+                    if (qMatch) {
+                        quantity = qMatch[1] + '件';
+                        matched = true;
+                    } else {
+                        let qMatch2 = line.match(/^(\d+)\s*件$/);
+                        if (qMatch2) {
+                            quantity = qMatch2[1] + '件';
+                            matched = true;
+                        }
+                    }
+                }
+
                 if (!matched && !/^(?:售后)\s*$/.test(line)) {
                     unmatched.push(line);
                 }
@@ -84,16 +99,16 @@ $(function() {
                 status = '退货退款';
             }
 
-            results.push({ orderNo, product, receiver, tracking, status, returnNo });
+            results.push({ orderNo, product, receiver, tracking, status, returnNo, quantity });
         }
 
-        return results.filter(r => r.orderNo || r.product || r.receiver || r.tracking || r.status || r.returnNo);
+        return results.filter(r => r.orderNo || r.product || r.receiver || r.tracking || r.status || r.returnNo || r.quantity);
     }
 
     // ---------- 渲染 ----------
     function renderTable(data) {
         if (!data || data.length === 0) {
-            tableBody.innerHTML = `<tr class="empty-row"><td colspan="6">暂无数据，请在上方粘贴内容</td></tr>`;
+            tableBody.innerHTML = `<tr class="empty-row"><td colspan="7">暂无数据，请在上方粘贴内容</td></tr>`;
             recordCount.textContent = '共 0 条';
             return;
         }
@@ -103,6 +118,7 @@ $(function() {
             html += `<tr>
                 <td>${escHtml(row.orderNo)}</td>
                 <td>${escHtml(row.product)}</td>
+                <td>${escHtml(row.quantity)}</td>
                 <td>${escHtml(row.receiver)}</td>
                 <td>${escHtml(row.tracking)}</td>
                 <td>${row.status ? `<span class="status-tag">${escHtml(row.status)}</span>` : ''}</td>
@@ -137,15 +153,11 @@ $(function() {
 
     // ---------- 粘贴：自动加换行 + 滚动到底部 ----------
     inputArea.addEventListener('paste', function(e) {
-        // 延迟执行以确保粘贴内容已写入
         setTimeout(function() {
             const val = inputArea.value;
-            // 如果内容不为空且末尾没有换行，则追加一个换行
             if (val && !val.endsWith('\n')) {
                 inputArea.value = val + '\n\n';
-                // 将光标移到末尾
                 inputArea.selectionStart = inputArea.selectionEnd = inputArea.value.length;
-                // 滚动到最底部
                 inputArea.scrollTop = inputArea.scrollHeight;
             }
         }, 10);
@@ -165,7 +177,7 @@ $(function() {
         if (data.length === 0) return;
 
         const rows = data.map(r => [
-            r.orderNo, r.product, r.receiver, r.tracking, r.status, r.returnNo
+            r.orderNo, r.product, r.quantity, r.receiver, r.tracking, r.status, r.returnNo
         ]);
         const tsv = rows.map(r => r.join('\t')).join('\n');
 
@@ -203,9 +215,9 @@ $(function() {
         const data = window._lastData || [];
         if (data.length === 0) return;
 
-        const header = ['订单号', '商品名称', '收货信息', '商品快递单号', '状态', '退货单号'];
+        const header = ['订单号', '商品名称', '商品数量', '收货信息', '商品快递单号', '状态', '退货单号'];
         const rows = data.map(r => [
-            r.orderNo, r.product, r.receiver, r.tracking, r.status, r.returnNo
+            r.orderNo, r.product, r.quantity, r.receiver, r.tracking, r.status, r.returnNo
         ]);
         const escape = (str) => {
             if (!str) return '';
@@ -226,7 +238,6 @@ $(function() {
 
     // ---------- 初始化 ----------
     function init() {
-        // 包裹复制按钮和提示
         const parent = copyBtn.parentNode;
         const wrapper = document.createElement('span');
         wrapper.style.cssText = 'display: inline-flex; align-items: center; margin-left: auto;';
