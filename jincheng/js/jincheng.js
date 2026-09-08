@@ -1,4 +1,4 @@
-// formatter.js（增强版：空状态补退货退款 + 换货识别）
+// formatter.js（增强版：支持退货/退回单号 + 粘贴滚动到底部）
 $(function() {
     'use strict';
 
@@ -48,14 +48,15 @@ $(function() {
                     if (m) { tracking = m[1]; matched = true; }
                 }
 
+                // 支持退货单号 / 退回单号
                 if (!matched) {
-                    m = line.match(/退货单号[：:]\s*(.+)/);
+                    m = line.match(/(?:退货单号|退回单号)[：:]\s*(.+)/);
                     if (m) { returnNo = m[1]; matched = true; }
                 }
 
-                // ---------- 状态检测：扩展关键词（新增“换货”） ----------
+                // ---------- 状态检测 ----------
                 if (!matched) {
-                    if (/退货已签收|买家已退货|商家已同意|售后申请待商家处理|商家已同意售后申请|退款成功|仅退款|退款|同意|拒绝|退货|拦截|拒收|换货/.test(line)) {
+                    if (/仅退款|退款|退货|拦截|拒收|换货/.test(line)) {
                         status = line;
                         matched = true;
                     }
@@ -69,7 +70,7 @@ $(function() {
             // 如果 status 仍为空，尝试从 unmatched 中取第一条
             if (!status && unmatched.length > 0) {
                 for (let line of unmatched) {
-                    if (/订单编号|商品|收货|运单|原单|退货单号/.test(line)) continue;
+                    if (/订单编号|商品|收货|运单|原单|退货单号|退回单号/.test(line)) continue;
                     status = line;
                     break;
                 }
@@ -78,7 +79,7 @@ $(function() {
                 }
             }
 
-            // ---------- 新增：无状态但有退货单号，自动补“退货退款” ----------
+            // 无状态但有退货单号，自动补“退货退款”
             if (!status && returnNo) {
                 status = '退货退款';
             }
@@ -133,6 +134,23 @@ $(function() {
 
     // ---------- 事件绑定 ----------
     inputArea.addEventListener('input', autoFormat);
+
+    // ---------- 粘贴：自动加换行 + 滚动到底部 ----------
+    inputArea.addEventListener('paste', function(e) {
+        // 延迟执行以确保粘贴内容已写入
+        setTimeout(function() {
+            const val = inputArea.value;
+            // 如果内容不为空且末尾没有换行，则追加一个换行
+            if (val && !val.endsWith('\n')) {
+                inputArea.value = val + '\n\n';
+                // 将光标移到末尾
+                inputArea.selectionStart = inputArea.selectionEnd = inputArea.value.length;
+                // 滚动到最底部
+                inputArea.scrollTop = inputArea.scrollHeight;
+            }
+        }, 10);
+    });
+
     formatBtn.addEventListener('click', formatData);
 
     clearBtn.addEventListener('click', function() {
