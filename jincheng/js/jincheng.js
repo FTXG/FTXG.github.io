@@ -34,12 +34,12 @@ $(function() {
                 if (m) { orderNo = m[1]; matched = true; }
 
                 if (!matched) {
-                    m = line.match(/(?:商品名称|商品|产品名称|产品名|产品)[：:]\s*(.+)/);
+                    m = line.match(/(?:商品名称|商品名|商品|产品名称|产品名|产品)[：:]\s*(.+)/);
                     if (m) { product = m[1]; matched = true; }
                 }
 
                 if (!matched) {
-                    m = line.match(/收货(?:人)?信息[：:]\s*(.+)/);
+                    m = line.match(/收货(?:人|地址|信息)[：:]\s*(.+)/);
                     if (m) { receiver = m[1]; matched = true; }
                 }
 
